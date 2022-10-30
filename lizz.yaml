@@ -1,0 +1,18 @@
+name: pihole
+values:
+  passwords:
+    - name: adminPassword
+      description: "Password for the admin account."
+      print: true
+      length: 12
+      numDigits: 5
+      numSymbols: 0
+      noUpper: false
+      allowRepeat: false
+  userValues:
+    - name: loadBalancerIp
+      required: true
+encryption:
+  enabled: true
+  inputPaths:
+    - base/secret.yaml

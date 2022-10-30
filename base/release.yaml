@@ -1,0 +1,37 @@
+apiVersion: helm.toolkit.fluxcd.io/v2beta1
+kind: HelmRelease
+metadata:
+  name: pihole
+  namespace: {{index . "namespace"}}
+spec:
+  serviceAccountName: {{index . "serviceAccountName"}}
+  releaseName: pihole
+  chart:
+    spec:
+      chart: pihole
+      version: "2.9.3"
+      sourceRef:
+        kind: HelmRepository
+        name: mojo2600
+  interval: 30m
+  install:
+    remediation:
+      retries: 3
+  test:
+    enable: false
+  values:
+    persistentVolumeClaim:
+      enabled: true
+    serviceWeb:
+      type: LoadBalancer
+      loadBalancerIP: {{index . "loadBalancerIp"}}
+      annotations:
+        metallb.universe.tf/allow-shared-ip: pihole-svc
+    serviceDns:
+      type: LoadBalancer
+      loadBalancerIP: {{index . "loadBalancerIp"}}
+      annotations:
+        metallb.universe.tf/allow-shared-ip: pihole-svc
+    admin:
+      existingSecret: "pihole-admin"
+      passwordKey: "password"
