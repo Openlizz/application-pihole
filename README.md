@@ -44,7 +44,8 @@ kubectl get pod -n pihole
 The output should be similar to:
 
 ```
-NAMESPACE       NAME                                        READY   STATUS    RESTARTS      AGE
+NAME                     READY   STATUS    RESTARTS   AGE
+pihole-d457cbb97-2s925   1/1     Running   0          2m27s
 ```
 
 ## Usage
