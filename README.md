@@ -20,7 +20,7 @@ lizz add github \
     --origin-url=https://github.com/openlizz/application-pihole \
     --path=./default \
     --destination=pihole \
-    --set-value loadBalancerIp=192.168.1.245
+    --set-value loadBalancerIp=192.168.1.245 \
     --personal
 ```
 
